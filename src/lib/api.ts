@@ -76,7 +76,7 @@ export async function deleteProduct(id: string) {
 export type Role = "retailer" | "wholesaler" | "distributor";
 export type RegisterInput = {
   name: string; phone: string; email: string; password: string;
-  shopName: string; role: Role; address: string; pincode: string; shopGstNumber?: string;
+  shopName: string; role: Role; address: string; pincode: string; shopGstNumber?: string | undefined;
 };
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 // Mock accounts: stored locally until the accounts API exists.

@@ -26,7 +26,7 @@ const inputClsErr = cn(inputCls, "border-destructive focus:border-destructive");
 function Field({
   label, error, children, delay, className,
 }: {
-  label: string; error?: string; children: React.ReactNode; delay: number; className?: string;
+  label: string; error?: string | undefined; children: React.ReactNode; delay: number; className?: string;
 }) {
   return (
     <div className={cn("animate-fade-up", className)} style={{ animationDelay: `${delay}ms` }}>
