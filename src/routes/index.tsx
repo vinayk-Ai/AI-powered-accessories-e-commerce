@@ -58,7 +58,10 @@ function Landing() {
             </Link>
           </div>
           <p className="mt-4 text-xs text-muted-foreground">
-            {t("Free to try · English & Hindi · Works on any phone", "Muft try karo · English aur Hindi · Har phone par chalta hai")}
+            {t("Free to try · English & Hindi · Works on any phone", "Muft try karo · English aur Hindi · Har phone par chalta hai")} ·{" "}
+            <Link to="/signup" className="font-medium text-primary underline-offset-2 hover:underline">
+              {t("Create account", "Account banao")}
+            </Link>
           </p>
         </div>
 
