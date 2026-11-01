@@ -15,10 +15,10 @@ describe("App routing", () => {
     expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
   });
 
-  it("matches pages for /aaj and /bill instead of falling back to not found", () => {
+  it("matches pages for /aaj, /bill, /signup and /login instead of falling back to not found", () => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
 
-    for (const path of ["/aaj", "/bill"]) {
+    for (const path of ["/aaj", "/bill", "/signup", "/login"]) {
       const matches = router.matchRoutes(path);
       expect(matches.at(-1)?.routeId, path).not.toBe(rootRouteId);
     }

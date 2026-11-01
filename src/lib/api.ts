@@ -73,13 +73,26 @@ export async function deleteProduct(id: string) {
   products = products.filter((p) => p.id !== id);
 }
 
-export type RegisterInput = { businessName: string; ownerName: string; phone: string; city: string; role: ClientType };
-// Mock registration: stores locally until the accounts API exists.
+export type Role = "retailer" | "wholesaler" | "distributor";
+export type RegisterInput = {
+  name: string; phone: string; email: string; password: string;
+  shopName: string; role: Role; address: string; pincode: string; shopGstNumber?: string;
+};
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+// Mock accounts: stored locally until the accounts API exists.
 export async function registerShop(input: RegisterInput) {
-  const saved = JSON.parse(localStorage.getItem("byield-account") ?? "[]") as RegisterInput[];
-  saved.push(input);
-  localStorage.setItem("byield-account", JSON.stringify(saved));
-  return { ok: true };
+  await wait(900);
+  localStorage.setItem("byield-account", JSON.stringify(input));
+  return { ok: true as const };
+}
+export async function loginShop(email: string, password: string) {
+  await wait(900);
+  const saved = localStorage.getItem("byield-account");
+  if (!saved) return { ok: false as const, error: "no-account" as const };
+  const account = JSON.parse(saved) as RegisterInput;
+  if (account.email.toLowerCase() !== email.trim().toLowerCase() || account.password !== password)
+    return { ok: false as const, error: "bad-credentials" as const };
+  return { ok: true as const, account: { name: account.name, shopName: account.shopName, role: account.role } };
 }
 export async function nextBillNo() { return "B-1049"; }
 
