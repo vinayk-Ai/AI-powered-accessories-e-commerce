@@ -1,10 +1,10 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 
 export type Lang = "en" | "hi";
-const Ctx = createContext<{ lang: Lang; setLang: (l: Lang) => void }>({ lang: "hi", setLang: () => {} });
+const Ctx = createContext<{ lang: Lang; setLang: (l: Lang) => void }>({ lang: "en", setLang: () => {} });
 
 export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>("hi");
+  const [lang, setLang] = useState<Lang>("en");
   return <Ctx.Provider value={{ lang, setLang }}>{children}</Ctx.Provider>;
 }
 export function useLang() {

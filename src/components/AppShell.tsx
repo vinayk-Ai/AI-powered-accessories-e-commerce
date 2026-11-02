@@ -3,6 +3,7 @@ import { Home, ReceiptText, Package, Files, BarChart3, Settings, Search, Plus, M
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { useLang } from "@/lib/i18n";
+import { buttonVariants } from "@/components/ui-kit";
 
 type Nav = { to?: "/" | "/bill"; icon: typeof Home; en: string; hi: string };
 const nav: Nav[] = [
@@ -17,6 +18,44 @@ const nav: Nav[] = [
 export function AppShell({ children }: { children: ReactNode }) {
   const path = useRouterState({ select: (s) => s.location.pathname });
   const { t, lang, setLang } = useLang();
+
+  if (path === "/login" || path === "/signup") {
+    return (
+      <div className="min-h-screen w-full">
+        <header className="border-b bg-card/80 backdrop-blur-sm">
+          <div className="mx-auto flex h-16 max-w-[1240px] items-center justify-between px-4 md:px-8">
+            <Link to="/" className="flex items-center gap-2.5 text-foreground">
+              <span className="grid size-9 place-items-center rounded-md bg-primary font-serif text-xl text-primary-foreground">
+                B
+              </span>
+              <span className="font-serif text-2xl">Byield</span>
+            </Link>
+            <div
+              role="radiogroup"
+              aria-label="Language"
+              className="flex rounded-full bg-muted p-0.5 text-xs font-medium"
+            >
+              {(["en", "hi"] as const).map((l) => (
+                <button
+                  key={l}
+                  role="radio"
+                  aria-checked={lang === l}
+                  onClick={() => setLang(l)}
+                  className={cn(
+                    "rounded-full px-2.5 py-1 transition-colors duration-150",
+                    lang === l ? "bg-card text-foreground hairline" : "text-muted-foreground",
+                  )}
+                >
+                  {l === "en" ? "EN" : "Hinglish"}
+                </button>
+              ))}
+            </div>
+          </div>
+        </header>
+        <main className="mx-auto max-w-[1240px] px-4 pb-16 pt-6 md:px-8 md:pt-10">{children}</main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen w-full">
@@ -47,16 +86,24 @@ export function AppShell({ children }: { children: ReactNode }) {
       <div className="md:pl-16">
         {/* Top bar */}
         <header className="sticky top-0 z-30 border-b bg-background/95 backdrop-blur-sm">
-          <div className="mx-auto flex h-16 max-w-[1240px] items-center gap-3 px-4 md:px-8">
+          <div className="mx-auto grid min-h-16 max-w-[1240px] grid-cols-[auto_minmax(0,1fr)] items-center gap-x-2 gap-y-2 px-3 py-2 sm:px-4 md:flex md:h-16 md:grid-cols-none md:gap-3 md:px-8 md:py-0">
             <div className="grid size-8 place-items-center rounded-md bg-primary font-serif text-lg text-primary-foreground md:hidden">B</div>
-            <label className="flex h-10 flex-1 items-center gap-2 rounded-md hairline bg-card px-3 text-muted-foreground focus-within:border-primary md:max-w-xl">
+            <label className="col-span-2 row-start-2 flex h-10 min-w-0 items-center gap-2 rounded-md hairline bg-card px-3 text-muted-foreground focus-within:border-primary md:order-none md:col-span-1 md:row-auto md:flex-1 md:max-w-xl">
               <Search className="size-4 stroke-[1.5]" />
               <input className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
                 placeholder={t("Search products, bills, clients...", "Maal, bill, client dhoondo...")} />
               <kbd className="hidden rounded-sm hairline px-1.5 text-[11px] sm:block">⌘K</kbd>
             </label>
-            <div className="ml-auto flex items-center gap-3">
-              <div role="radiogroup" aria-label="Language" className="flex rounded-full bg-muted p-0.5 text-xs font-medium">
+            <div className="col-start-2 row-start-1 ml-auto flex items-center gap-1.5 sm:gap-3 md:col-auto md:row-auto md:ml-auto">
+              <nav aria-label="Account" className="flex items-center gap-1.5 sm:gap-2">
+                <Link to="/login" className={cn(buttonVariants({ variant: "outline", size: "sm" }), "px-2.5 sm:px-3")}>
+                  {t("Log in", "Log in")}
+                </Link>
+                <Link to="/signup" className={cn(buttonVariants({ variant: "primary", size: "sm" }), "px-2.5 sm:px-3")}>
+                  {t("Sign up", "Account banao")}
+                </Link>
+              </nav>
+              <div role="radiogroup" aria-label="Language" className="flex shrink-0 rounded-full bg-muted p-0.5 text-xs font-medium">
                 {(["en", "hi"] as const).map((l) => (
                   <button key={l} role="radio" aria-checked={lang === l} onClick={() => setLang(l)}
                     className={cn("rounded-full px-2.5 py-1 transition-colors duration-150", lang === l ? "bg-card text-foreground hairline" : "text-muted-foreground")}>
@@ -64,7 +111,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                   </button>
                 ))}
               </div>
-              <div className="grid size-9 place-items-center rounded-full bg-accent-soft text-sm font-semibold text-foreground" aria-label="Rakesh">RK</div>
+              <div className="hidden size-9 shrink-0 place-items-center rounded-full bg-accent-soft text-sm font-semibold text-foreground sm:grid" aria-label="Rakesh">RK</div>
             </div>
           </div>
         </header>

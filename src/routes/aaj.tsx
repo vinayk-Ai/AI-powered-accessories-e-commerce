@@ -76,10 +76,10 @@ function Home() {
         <h2 className="px-6 pt-5 text-base font-semibold">{t("Today's tasks", "Aaj ke kaam")}</h2>
         <ul className="mt-2 divide-y">
           {tasks.map((k) => (
-            <li key={k.cta} className="flex items-center gap-4 px-6 py-4">
+            <li key={k.cta} className="flex items-center gap-3 px-4 py-4 sm:gap-4 sm:px-6">
               <span className={cn("grid size-9 place-items-center rounded-md", k.tone)}><k.icon className="size-[18px] stroke-[1.5]" /></span>
-              <span className="flex-1 text-sm">{k.text}</span>
-              <Button size="sm">{k.cta}</Button>
+              <span className="min-w-0 flex-1 text-sm">{k.text}</span>
+              <Button size="sm" className="shrink-0">{k.cta}</Button>
             </li>
           ))}
         </ul>
@@ -90,11 +90,11 @@ function Home() {
           <h2 className="text-base font-semibold">{t("Recent bills", "Haal ke bills")}</h2>
           <span className="text-xs text-muted-foreground">{t("Today", "Aaj")}</span>
         </div>
-        <table className="mt-3 w-full text-sm">
+        <table className="mt-3 w-full table-fixed text-sm sm:table-auto">
           <thead className="text-left text-xs text-muted-foreground">
             <tr className="border-b">
-              <th className="px-6 py-2 font-normal">Bill</th>
-              <th className="px-2 py-2 font-normal">Client</th>
+              <th className="w-[24%] px-3 py-2 font-normal sm:w-auto sm:px-6">Bill</th>
+              <th className="w-[40%] px-1 py-2 font-normal sm:w-auto sm:px-2">Client</th>
               <th className="px-2 py-2 text-right font-normal">{t("Amount", "Rakam")}</th>
               <th className="hidden px-2 py-2 font-normal sm:table-cell">Status</th>
               <th className="hidden px-6 py-2 text-right font-normal sm:table-cell">{t("Time", "Samay")}</th>
@@ -104,8 +104,8 @@ function Home() {
             {bills.map((b) => (
               <tr key={b.no} onClick={() => setOpen(b)} tabIndex={0} onKeyDown={(e) => e.key === "Enter" && setOpen(b)}
                 className="cursor-pointer border-b transition-colors duration-150 last:border-0 hover:bg-muted/60 focus-visible:bg-muted/60 focus-visible:outline-none">
-                <td className="num px-6 py-3.5 text-muted-foreground">{b.no}</td>
-                <td className="px-2 py-3.5 font-medium">{b.client}</td>
+                  <td className="num px-3 py-3.5 text-muted-foreground sm:px-6">{b.no}</td>
+                  <td className="px-1 py-3.5 font-medium sm:px-2"><span className="block truncate">{b.client}</span></td>
                 <td className="num px-2 py-3.5 text-right font-medium">{money(b.amount)}</td>
                 <td className="hidden px-2 py-3.5 sm:table-cell"><StatusBadge status={b.status} /></td>
                 <td className="hidden px-6 py-3.5 text-right text-muted-foreground sm:table-cell">{b.time}</td>

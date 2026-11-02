@@ -76,7 +76,7 @@ function NewBill() {
           <ClientPicker clients={clients} value={client} onChange={setClient} />
           <ProductSearch products={products} onAdd={add} />
           <Card>
-            <div className="flex items-center justify-between border-b px-5 py-3 text-xs text-muted-foreground">
+            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b px-4 py-3 text-xs text-muted-foreground sm:px-5">
               <span>{lines.length} {t("items", "items")}</span>
               <span>{ctype === "Wholesaler" ? t("Wholesale rates applied", "Wholesale rate laga hai") : t("Retail rates applied", "Retail rate laga hai")}</span>
             </div>
@@ -129,7 +129,7 @@ function ClientPicker({ clients, value, onChange }: { clients: Client[]; value: 
     <div className="relative">
       <button onClick={() => setOpen((o) => !o)} className="flex w-full items-center gap-3 rounded-lg hairline bg-card px-4 py-3 text-left transition-colors duration-150 hover:border-primary/40 focus-ring">
         <span className="grid size-10 place-items-center rounded-full bg-accent-soft text-sm font-semibold">{value ? value.name.split(" ").map((w) => w[0]).slice(0, 2).join("") : <UserRound className="size-4 stroke-[1.5]" />}</span>
-        <span className="flex-1">
+        <span className="min-w-0 flex-1">
           <span className="block text-xs text-muted-foreground">Client</span>
           <span className="flex flex-wrap items-center gap-2 font-medium">{value?.name ?? "Walk-in"}
             {value && <Badge tone={value.type === "Wholesaler" ? "primary" : "neutral"}>{value.type}</Badge>}</span>
@@ -178,7 +178,7 @@ function ProductSearch({ products, onAdd }: { products: Product[]; onAdd: (p: Pr
             if (e.key === "Escape") setQ("");
           }}
           placeholder={t('Type product name, e.g. "type c"', 'Maal ka naam likho, jaise "type c"')}
-          className="flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground" />
+          className="min-w-0 flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground" />
         <kbd className="hidden rounded-sm hairline px-1.5 text-[11px] text-muted-foreground sm:block">Enter ↵</kbd>
       </label>
       {q && (
