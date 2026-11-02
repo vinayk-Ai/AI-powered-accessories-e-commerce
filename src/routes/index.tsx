@@ -31,6 +31,12 @@ export const Route = createFileRoute("/")({
         },
       },
     ],
+    links: [
+      { rel: "canonical", href: "https://www.byield.in/" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon-48x48.png", type: "image/png", sizes: "48x48" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+    ],
   }),
   component: Landing,
 });
