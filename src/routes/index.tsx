@@ -11,9 +11,11 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Byield — Business yield for your accessories shop" },
+      { name: "google-site-verification", content: "oE-6FnMAg7cBN5wol4GdN2M7OCo3xLCS36sscigIly8" },
       { name: "description", content: "Byield means business yield: billing and inventory for mobile-accessories distributors in India. Bills in seconds, stock and udhaar tracked, daily profit known." },
       { property: "og:title", content: "Byield — Business yield for your accessories shop" },
       { property: "og:description", content: "Bills in seconds, stock and udhaar tracked, daily profit known. Made for mobile-accessories distributors in India." },
+      { property: "og:image", content: "https://www.byield.in/og-image.png" },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
