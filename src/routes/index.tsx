@@ -23,6 +23,8 @@ export const Route = createFileRoute("/")({
           name: "Byield",
           url: "https://www.byield.in",
           logo: "https://www.byield.in/logo.svg",
+          description: "Billing and inventory software for mobile accessories distributors in India.",
+          founder: { "@type": "Person", name: "Vinay Kumar" },
           sameAs: ["https://www.linkedin.com/company/byield-india"],
         },
       },
