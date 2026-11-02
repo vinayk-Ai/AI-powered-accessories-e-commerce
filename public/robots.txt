@@ -1,1 +1,7 @@
-https://www.byield.in/robots.txt
+User-agent: *
+Allow: /
+Disallow: /bill
+Disallow: /aaj
+Disallow: /settings
+
+Sitemap: https://www.byield.in/sitemap.xml

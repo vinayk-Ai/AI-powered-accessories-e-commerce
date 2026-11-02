@@ -25,9 +25,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <header className="border-b bg-card/80 backdrop-blur-sm">
           <div className="mx-auto flex h-16 max-w-[1240px] items-center justify-between px-4 md:px-8">
             <Link to="/" className="flex items-center gap-2.5 text-foreground">
-              <span className="grid size-9 place-items-center rounded-md bg-primary font-serif text-xl text-primary-foreground">
-                B
-              </span>
+              <img src="/logo.svg" alt="" className="size-10 shrink-0" />
               <span className="font-serif text-2xl">Byield</span>
             </Link>
             <div
@@ -61,9 +59,11 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="min-h-screen w-full">
       {/* Desktop sidebar */}
       <aside className="group fixed inset-y-0 left-0 z-40 hidden w-16 flex-col border-r bg-card transition-[width] duration-200 ease-out hover:w-[220px] md:flex">
-        <div className="flex h-16 items-center gap-3 px-4">
-          <div className="grid size-8 shrink-0 place-items-center rounded-md bg-primary font-serif text-lg text-primary-foreground">B</div>
-          <span className="font-serif text-xl opacity-0 transition-opacity duration-150 group-hover:opacity-100">Byield</span>
+        <div className="flex h-16 items-center gap-3 overflow-hidden px-3">
+          <img src="/logo.svg" alt="" className="size-10 shrink-0" />
+          <span className="w-0 shrink-0 overflow-hidden whitespace-nowrap font-serif text-xl opacity-0 transition-all duration-200 group-hover:w-[120px] group-hover:opacity-100">
+            Byield
+          </span>
         </div>
         <nav className="mt-4 flex flex-col gap-1 px-3">
           {nav.map((n) => {
@@ -87,7 +87,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         {/* Top bar */}
         <header className="sticky top-0 z-30 border-b bg-background/95 backdrop-blur-sm">
           <div className="mx-auto grid min-h-16 max-w-[1240px] grid-cols-[auto_minmax(0,1fr)] items-center gap-x-2 gap-y-2 px-3 py-2 sm:px-4 md:flex md:h-16 md:grid-cols-none md:gap-3 md:px-8 md:py-0">
-            <div className="grid size-8 place-items-center rounded-md bg-primary font-serif text-lg text-primary-foreground md:hidden">B</div>
+            <img src="/logo.svg" alt="Byield" className="size-8 shrink-0 md:hidden" />
             <label className="col-span-2 row-start-2 flex h-10 min-w-0 items-center gap-2 rounded-md hairline bg-card px-3 text-muted-foreground focus-within:border-primary md:order-none md:col-span-1 md:row-auto md:flex-1 md:max-w-xl">
               <Search className="size-4 stroke-[1.5]" />
               <input className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"

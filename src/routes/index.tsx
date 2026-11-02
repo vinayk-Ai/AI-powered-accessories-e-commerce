@@ -14,6 +14,16 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Byield means business yield: billing and inventory for mobile-accessories distributors in India. Bills in seconds, stock and udhaar tracked, daily profit known." },
       { property: "og:title", content: "Byield — Business yield for your accessories shop" },
       { property: "og:description", content: "Bills in seconds, stock and udhaar tracked, daily profit known. Made for mobile-accessories distributors in India." },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Byield",
+          url: "https://www.byield.in",
+          logo: "https://www.byield.in/logo.svg",
+          sameAs: ["https://www.linkedin.com/company/byield-india"],
+        },
+      },
     ],
   }),
   component: Landing,
@@ -42,6 +52,10 @@ function Landing() {
     <div className="space-y-10 animate-fade-up md:space-y-14">
       <section className="grid items-center gap-10 md:grid-cols-[1fr_360px]">
         <div>
+          <div className="mb-3 flex items-center gap-1.5">
+            <img src="/logo.svg" alt="" className="size-10 shrink-0" />
+            <span className="font-sans text-2xl font-semibold tracking-tight text-primary">Byield</span>
+          </div>
           <Badge tone="primary">Byield = {t("Business Yield", "Business Yield")}</Badge>
           <h1 className="mt-4 max-w-xl font-serif text-[34px] leading-tight md:text-[52px]">
             {t("Know what your shop truly earns — every single day.", "Jaano aapki dukaan sach mein kya kamati hai — roz.")}
